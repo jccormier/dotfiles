@@ -1,0 +1,29 @@
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+- name: 'Extract : Generate List'
+  stat:
+    path: '{{ ansible_env.HOME }}/{{ item.path }}'
+  register: destination_files
+  with_filetree: '{{ ansible_env.PWD }}/files/'
+
+- name: 'Extract : Directories'
+  file:
+    path: '{{ item.invocation.module_args.path }}'
+    state: directory
+    mode: '{{ item.item.mode }}'
+  loop: '{{ destination_files.results }}'
+  when: item.item.state == 'directory' and not item.stat.exists
+
+- name: 'Extract : Symbolic Links'
+  file:
+    src: '{{ item.item.src }}'
+    dest: '{{ item.invocation.module_args.path}}'
+    state: link
+  loop: '{{ destination_files.results }}'
+  when: item.item.state == 'file' and not item.stat.exists
+

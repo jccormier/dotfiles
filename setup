@@ -1,0 +1,43 @@
+#!/bin/sh
+
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+GROTTO_REPO=https://github.com/jccormier/grotto.git
+GROTTO_HOME=$HOME/.grotto
+
+[[ -e "$GROTTO_HOME" ]] && echo "ERROR: $GROTTO_HOME already exists, aborting installation" && exit 1
+
+if ! command -v brew >/dev/null 2>&1; then
+    echo
+    echo "Installing Homebrew..."
+    echo 
+    echo "you may be prompted for your sudo password"
+
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+if ! command -v ansible >/dev/null 2>&1; then
+    echo
+    echo "Installing Ansible..."
+
+    brew install ansible
+fi
+
+echo
+echo "Cloning '$GROTTO_REPO'..."
+
+mkdir -p $GROTTO_HOME
+git clone $GROTTO_REPO $GROTTO_HOME
+
+echo
+echo "To complete the installation, execute the following:"
+echo
+echo "  \$ cd $GROTTO_HOME"
+echo "  \$ ./playbook.yml"
+echo
+ 

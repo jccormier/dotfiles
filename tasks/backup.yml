@@ -1,0 +1,23 @@
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+- name: 'Backup : Generate List'
+  stat:
+    path: '{{ ansible_env.HOME }}/{{ item.path }}'
+  register: destination_files
+  with_filetree: '{{ ansible_env.PWD }}/files/'
+
+- name: 'Backup : Regular Files'
+  command: mv '{{ item.stat.path }}' '{{ item.stat.path}}.old'
+  loop: '{{ destination_files.results }}'
+  when: item.stat.exists and item.stat.isreg
+
+- name: 'Backup : Symbolic Links'
+  command: mv '{{ item.stat.path }}' '{{ item.stat.path}}.old'
+  loop: '{{ destination_files.results }}'
+  when: item.stat.exists and item.stat.islnk and item.stat.lnk_source != item.item.src
+

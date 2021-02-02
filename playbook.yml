@@ -1,0 +1,17 @@
+#!/usr/bin/env ansible-playbook
+
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - import_tasks: tasks/backup.yml
+  - import_tasks: tasks/extract.yml
+  - import_tasks: tasks/install.yml
+

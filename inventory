@@ -1,0 +1,12 @@
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+[localhost]
+127.0.0.1  ansible_connection=local
+
+[localhost:vars]
+ansible_python_interpreter=/usr/local/bin/python3
