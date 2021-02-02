@@ -1,0 +1,11 @@
+[user]
+	name = JC Cormier
+	email = bud@jccormier.com
+	signkey = 0x44D10AABE6F39095
+
+[commit]
+	gpgsign = true
+
+[pager]
+	branch = false
+
