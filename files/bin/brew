@@ -1,0 +1,19 @@
+#!/bin/sh
+
+#
+# Copyright (c) 2021 JC Cormier
+# All rights reserved.
+# SPDX-License-Identifier: MIT
+# For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
+#
+
+BREW=/usr/local/bin/brew
+
+HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW ${@}
+
+for sub in install uninstall; do
+  if [[ "$sub" == "${1}" ]]; then
+     HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW bundle dump --force
+  fi
+done
+
