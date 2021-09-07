@@ -7,10 +7,10 @@
 # For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
 #
 
-GROTTO_REPO=https://github.com/jccormier/grotto.git
-GROTTO_HOME=$HOME/.grotto
+DOTFILES_REPO=https://github.com/jccormier/dotfiles.git
+DOTFILES_HOME=$HOME/.dotfiles
 
-[[ -e "$GROTTO_HOME" ]] && echo "ERROR: $GROTTO_HOME already exists, aborting installation" && exit 1
+[[ -e "$DOTFILES_HOME" ]] && echo "ERROR: $DOTFILES_HOME already exists, aborting installation" && exit 1
 
 if ! command -v brew >/dev/null 2>&1; then
     echo
@@ -29,15 +29,15 @@ if ! command -v ansible >/dev/null 2>&1; then
 fi
 
 echo
-echo "Cloning '$GROTTO_REPO'..."
+echo "Cloning '$DOTFILES_REPO'..."
 
-mkdir -p $GROTTO_HOME
-git clone $GROTTO_REPO $GROTTO_HOME
+mkdir -p $DOTFILES_HOME
+git clone $DOTFILES_REPO $DOTFILES_HOME
 
 echo
 echo "To complete the installation, execute the following:"
 echo
-echo "  \$ cd $GROTTO_HOME"
+echo "  \$ cd $DOTFILES_HOME"
 echo "  \$ ./playbook.yml"
 echo
  
