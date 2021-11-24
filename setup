@@ -18,7 +18,7 @@ if ! command -v brew >/dev/null 2>&1; then
     echo 
     echo "you may be prompted for your sudo password"
 
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 if ! command -v ansible >/dev/null 2>&1; then
