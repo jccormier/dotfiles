@@ -11,7 +11,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'tpope/vim-surround'
 " Plug 'kana/vim-textobj-user'
 " Plug 'kana/vim-textobj-line'
-Plug 'junegunn/fzf', {'dir': '~/.fzf', 'do': './install --all'}
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 " Plug 'lifepillar/vim-solarized8'
@@ -53,6 +53,8 @@ nnoremap <Leader><Tab> <Tab>
 nmap <silent> ,b :Buffers<CR>
 nmap <silent> ,f :Files<CR>
 nmap <silent> ,l :Lines<CR>
+
+set rtp+=/usr/local/opt/fzf
 
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
