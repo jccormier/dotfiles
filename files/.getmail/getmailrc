@@ -5,7 +5,7 @@ ca_certs = /usr/local/etc/ca-certificates/cert.pem
 server = pop.gmail.com
 username = D9077C3D19645573@gmail.com
 port = 995
-# password = xxxxxxxxxx
+password_command = ("/usr/local/bin/gpg", "--decrypt", "--quiet", "/Users/jcormier/.mutt/password.asc")
 
 [destination]
 type = Maildir
