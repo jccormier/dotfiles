@@ -1,0 +1,14 @@
+set header_cache=~/.mutt/header_cache_mail.db
+
+set from=D9077C3D19645573@gmail.com
+set realname="JC Cormier"
+
+set sendmail="/usr/local/bin/msmtp -C /Users/jcormier/.msmtp/msmtprc"
+
+set mbox_type=Maildir
+set folder=~/Maildir
+set spoolfile=+inbox
+set postponed=+draft
+set record=+sent
+
+mailboxes +inbox
