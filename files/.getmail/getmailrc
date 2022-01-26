@@ -1,0 +1,20 @@
+[retriever]
+type = SimplePOP3SSLRetriever
+# ca_certs = /etc/ssl/certs/ca-certificates.crt
+ca_certs = /usr/local/etc/ca-certificates/cert.pem
+server = pop.gmail.com
+username = D9077C3D19645573@gmail.com
+port = 995
+# password = xxxxxxxxxx
+
+[destination]
+type = Maildir
+path = $HOME/Maildir/inbox/
+
+[options]
+verbose = 2
+message_log_verbose = true
+message_log = ~/.getmail.log
+delivered_to = false
+received = true
+delete = true
