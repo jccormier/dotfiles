@@ -37,7 +37,7 @@ set shell=zsh\ --login
 set t_Co=256
 set termguicolors
 set background=dark
-colorscheme jcormier
+colorscheme nord
 
 " Encrypted file support
 command Encrypt execute '%! ~/bin/encrypt' | execute ':redraw!'
