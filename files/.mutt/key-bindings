@@ -1,0 +1,4 @@
+macro index c "<change-folder><tab>" "folder list"
+macro index $ '<shell-escape> getmail <enter>'
+
+macro pager $ '<shell-escape> getmail <enter>'

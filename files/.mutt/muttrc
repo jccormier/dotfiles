@@ -12,3 +12,5 @@ set postponed=+draft
 set record=+sent
 
 mailboxes +inbox
+
+source ~/.mutt/key-bindings
