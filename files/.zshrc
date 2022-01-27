@@ -1,6 +1,14 @@
 #!/bin/zsh
 
+export PATH=$HOME/bin:$PATH
+export GPG_TTY="$(tty)"
+
+[ -f $HOME/.zcreds ] && source $HOME/.zcreds
+
 gpgconf --launch gpg-agent
 
-eval "$(rbenv init -)"
+[ -d $HOME/.rbenv ] && eval "$(rbenv init -)"
+[ -f $HOME/.dir_colors ] && eval "$(gdircolors $HOME/.dir_colors)"
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
+[ -f $HOME/.zaliases ] && source $HOME/.zaliases
