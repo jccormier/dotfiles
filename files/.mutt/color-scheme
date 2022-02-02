@@ -1,0 +1,17 @@
+color normal color7 default
+
+color body color12 default ".+"
+color body color11 default "(\shttps:[^ \t]+)|( [^ \t]+@[^ \t]+)"
+
+color hdrdefault color0 color6
+color header color15 color6 "^(From|To|Subject|Date|Cc):"
+
+color index color7 default ~A
+color index color12 default ~U
+color index color5 default ~D
+color index color6 default ~T
+
+color indicator color11 default 
+color error color1 default
+color status color7 default
+

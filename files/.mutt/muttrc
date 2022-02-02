@@ -5,6 +5,8 @@ set realname="JC Cormier"
 
 set sendmail="/usr/local/bin/msmtp -C /Users/jcormier/.msmtp/msmtprc"
 
+set help=no
+
 set mbox_type=Maildir
 set folder=~/Maildir
 set spoolfile=+inbox
@@ -13,4 +15,17 @@ set record=+sent
 
 mailboxes +inbox
 
+set status_format="[ Folder: %f ][ Messages: %m%?p? (%p draft)?%?u? (%u unread)?%?d? (%d deleted)?%?t? (%t tagged)? ][ Sort: %s / %S ]"
+
+source ~/.mutt/color-scheme
 source ~/.mutt/key-bindings
+
+set implicit_autoview=yes
+set mailcap_path="~/.mutt/mailcap"
+alternative_order text/html text/enriched text/plain
+
+score ~A +1
+score ~U +1
+
+set sort=score
+set sort_aux=date

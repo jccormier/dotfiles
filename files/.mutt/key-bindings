@@ -2,3 +2,8 @@ macro index c "<change-folder><tab>" "folder list"
 macro index $ '<shell-escape> getmail <enter>'
 
 macro pager $ '<shell-escape> getmail <enter>'
+
+macro index .a '<limit>~A<enter>'
+macro index .u '<limit>~U<enter>'
+macro index .d '<limit>~D<enter>'
+macro index .t '<limit>~T<enter>'
