@@ -15,7 +15,7 @@ set record=+sent
 
 mailboxes +inbox
 
-set status_format="[ Folder: %f ][ Messages: %m%?p? (%p draft)?%?u? (%u unread)?%?d? (%d deleted)?%?t? (%t tagged)? ][ Sort: %s / %S ]"
+set status_format="[ Folder: %f ][ Messages: %m%?p? (%p draft)?%?u? (%u unread)?%?d? (%d deleted)?%?t? (%t tagged)? ][ Sort: %s / %S ]%?V?[ Mask: %V ]?"
 
 source ~/.mutt/color-scheme
 source ~/.mutt/key-bindings
