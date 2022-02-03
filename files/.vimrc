@@ -43,6 +43,8 @@ colorscheme nord
 command Encrypt execute '%! ~/bin/encrypt' | execute ':redraw!'
 command Decrypt execute '%! ~/bin/decrypt' | execute ':redraw!'
 
+let mapleader=","
+
 nnoremap <Tab> <Esc>
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
@@ -50,13 +52,18 @@ cnoremap <Tab> <C-C><Esc>
 inoremap <Tab> <Esc>`^
 nnoremap <Leader><Tab> <Tab>
 
-nmap <silent> ,b :Buffers<CR>
-nmap <silent> ,f :Files<CR>
-nmap <silent> ,l :Lines<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <Leader>p :Files<SPACE>
+nnoremap <silent> <Leader>l :Lines<CR>
+
+nnoremap <Leader>ss :mksession! $VIMCONFIG/sessions/
+nnoremap <silent> <Leader>sl :call fzf#run({'sink': 'source', 'dir': '$VIMCONFIG/sessions'})<CR>
+
 
 set rtp+=/usr/local/opt/fzf
 
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag -u --nogroup --nocolor --column'
 
 autocmd VimEnter *
 \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
