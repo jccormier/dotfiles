@@ -17,6 +17,8 @@ Plug 'mileszs/ack.vim'
 " Plug 'lifepillar/vim-solarized8'
 " Plug 'pangloss/vim-javascript'
 
+Plug 'elixir-editors/vim-elixir'
+
 call plug#end()
 
 filetype plugin indent on
@@ -57,6 +59,7 @@ nnoremap <silent> <Leader>f :Files<CR>
 nnoremap <Leader>p :Files<SPACE>
 nnoremap <silent> <Leader>l :Lines<CR>
 
+nnoremap <silent> <Leader>si :mksession! .vim_session<CR>
 nnoremap <Leader>ss :mksession! $VIMCONFIG/sessions/
 nnoremap <silent> <Leader>sl :call fzf#run({'sink': 'source', 'dir': '$VIMCONFIG/sessions'})<CR>
 
@@ -68,6 +71,11 @@ let g:ackprg = 'ag -u --nogroup --nocolor --column'
 autocmd VimEnter *
 \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 \|   PlugInstall --sync | q
+\| endif
+
+autocmd VimEnter *
+\  if filereadable('.vim_session')
+\|   exe 'source .vim_session'
 \| endif
 
 autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
