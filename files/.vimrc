@@ -80,5 +80,5 @@ autocmd VimEnter *
 
 autocmd BufEnter * call system("tmux rename-window " . expand("%:t"))
 
-autocmd VimLeave * call system("tmux rename-window bash")
+autocmd VimLeave * call system("tmux rename-window zsh")
 
