@@ -9,3 +9,5 @@ gpgconf --launch gpg-agent
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 [ -f $HOME/.zaliases ] && source $HOME/.zaliases
+
+export PATH=$HOME/bin:$PATH
