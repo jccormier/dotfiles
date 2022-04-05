@@ -1,0 +1,40 @@
+#!/bin/zsh
+
+get_branch () {
+    local branch
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+    if [ "$branch" != '' ]; then
+        echo "[ Branch: #[fg=green]$branch#[fg=default] ]"
+    fi
+}
+
+get_modified () {
+    local modified
+    modified=$(git status -s 2>/dev/null | egrep -c ' M')
+
+    if [ "$modified" != '0' ]; then
+        echo "[ Modified: #[fg=red]$modified#[fg=default] ]"
+    fi
+}
+
+get_untracked () {
+    local untracked
+    untracked=$(git status -s 2>/dev/null | egrep -c '\?\?')
+
+    if [ "$untracked" != '0' ]; then
+        echo "[ Untracked: #[fg=red]$untracked#[fg=default] ]"
+    fi
+}
+
+get_staged () {
+    local staged
+    staged=$(git status -s 2>/dev/null | egrep -c '^(A|M)')
+
+    if [ "$staged" != '0' ]; then
+        echo "[ Staged: #[fg=green]$staged#[fg=default] ]"
+    fi
+}
+
+echo "$(get_branch)$(get_staged)$(get_modified)$(get_untracked)"
+
