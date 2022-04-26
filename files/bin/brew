@@ -11,9 +11,10 @@ BREW=/usr/local/bin/brew
 
 HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW ${@}
 
-for sub in install uninstall; do
+for sub in install uninstall remove autoremove; do
   if [[ "$sub" == "${1}" ]]; then
-     HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW bundle dump --force
+    echo "updating Brewfile..."
+    HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW bundle dump --force
   fi
 done
 

@@ -1,0 +1,14 @@
+# - copy this to your configuration file /Users/jcormier/.mpoprc
+# - add your password to the key ring:
+#   security add-internet-password -s pop.gmail.com -r pop3 -a D9077C3D19645573 -w
+# - adjust the delivery command
+account gmail
+host pop.gmail.com
+port 995
+tls on
+tls_starttls off
+user D9077C3D19645573
+passwordeval "gpg --decrypt --quiet --for-your-eyes-only ~/.mutt/password.asc"
+delivery maildir ~/Maildir/inbox
+
+account default : gmail

@@ -1,7 +1,7 @@
 macro index c "<change-folder><tab>" "folder list"
-macro index $ '<shell-escape> getmail <enter>'
+macro index $ '<shell-escape> /usr/local/bin/mpop <enter>'
 
-macro pager $ '<shell-escape> getmail <enter>'
+macro pager $ '<shell-escape> /usr/local/bin/mpop <enter>'
 
 macro index .a '<limit>~A<enter>'
 macro index .u '<limit>~U<enter>'
