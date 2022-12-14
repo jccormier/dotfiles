@@ -2,7 +2,7 @@
 
 get_branch () {
     local branch
-    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    branch=$(git branch --show-current)
 
     if [ "$branch" != '' ]; then
         echo "[ Branch: #[fg=green]$branch#[fg=default] ]"
