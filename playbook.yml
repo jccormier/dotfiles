@@ -1,4 +1,4 @@
-#!/usr/bin/env ansible-playbook
+#!/usr/bin/env homebrew/bin/ansible-playbook
 
 #
 # Copyright (c) 2021 JC Cormier
