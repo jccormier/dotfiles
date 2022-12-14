@@ -7,51 +7,30 @@
 # For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
 #
 
-DOTFILES_REPO=https://github.com/jccormier/dotfiles.git
-DOTFILES_REPO_SSH=git@github.com:jccormier/dotfiles.git
+DOTFILES_HOME=`dirname $(readlink -f ${0})`
 
-DOTFILES_HOME=$HOME/.dotfiles
+for d in $(du $DOTFILES_HOME/files | awk '{print $2}'); do
+    if [[ -d $d ]]; then
+        target=$HOME$(echo $d | sed s:$DOTFILES_HOME/files::g)
+        
+        mkdir -p $HOME$(echo $d | sed s:$DOTFILES_HOME/files::g)
+    fi
+done
 
-[[ -e "$DOTFILES_HOME" ]] && echo "ERROR: $DOTFILES_HOME already exists, aborting installation" && exit 1
-
-echo
-echo "Cloning '$DOTFILES_REPO'..."
-echo
-mkdir -p $DOTFILES_HOME
-git clone $DOTFILES_REPO $DOTFILES_HOME
-cd $DOTFILES_HOME
-git remote remove origin
-git remote add origin $DOTFILES_REPO_SSH
-
-echo
-echo "Installing Homebrew..."
-echo 
-mkdir -p $DOTFILES_HOME/homebrew 
-curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $DOTFILES_HOME/homebrew
-$DOTFILES_HOME/homebrew/bin/brew update
-$DOTFILES_HOME/homebrew/bin/brew bundle --file $DOTFILES_HOME/files/.Brewfile
-$DOTFILES_HOME/homebrew/bin/brew cleanup
-
-
-- name: 'Install : Update Homebrew'
-  command: brew update
-
-- name: 'Install : Packages / Casks'
-  command: brew bundle --global
-
-- name: 'Install : Cleanup'
-  command: brew cleanup
-
-
-echo
-echo "Installing Ansible..."
-echo
-$DOTFILES_HOME/homebrew/bin/brew install ansible
-
-echo
-echo "To complete the installation, execute the following:"
-echo
-echo "  \$ cd $DOTFILES_HOME"
-echo "  \$ ./playbook.yml"
-echo
- 
+for f in $(du -a $DOTFILES_HOME/files | awk '{print $2}'); do
+    if [[ -f $f ]]; then 
+        target=$HOME$(echo $f | sed s:$DOTFILES_HOME/files::g)
+        
+        if [[ -f $target ]]; then
+            if [[ -L $target ]]; then
+                echo "Removing symlink $target"
+                rm $target
+            else
+                echo "Backing up $target to $target.old"
+                mv $target $target.old
+            fi
+        fi
+        
+        ln -s $f $target
+    fi
+done
