@@ -13,5 +13,4 @@
   tasks:
   - import_tasks: tasks/backup.yml
   - import_tasks: tasks/extract.yml
-  - import_tasks: tasks/install.yml
 
