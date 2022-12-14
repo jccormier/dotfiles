@@ -14,30 +14,39 @@ DOTFILES_HOME=$HOME/.dotfiles
 
 [[ -e "$DOTFILES_HOME" ]] && echo "ERROR: $DOTFILES_HOME already exists, aborting installation" && exit 1
 
-if ! command -v brew >/dev/null 2>&1; then
-    echo
-    echo "Installing Homebrew..."
-    echo 
-    echo "you may be prompted for your sudo password"
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-fi
-
-if ! command -v ansible >/dev/null 2>&1; then
-    echo
-    echo "Installing Ansible..."
-
-    brew install ansible
-fi
-
 echo
 echo "Cloning '$DOTFILES_REPO'..."
-
+echo
 mkdir -p $DOTFILES_HOME
 git clone $DOTFILES_REPO $DOTFILES_HOME
 cd $DOTFILES_HOME
 git remote remove origin
 git remote add origin $DOTFILES_REPO_SSH
+
+echo
+echo "Installing Homebrew..."
+echo 
+mkdir -p $DOTFILES_HOME/homebrew 
+curl -L https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C $DOTFILES_HOME/homebrew
+$DOTFILES_HOME/homebrew/bin/brew update
+$DOTFILES_HOME/homebrew/bin/brew bundle --file $DOTFILES_HOME/files/.Brewfile
+$DOTFILES_HOME/homebrew/bin/brew cleanup
+
+
+- name: 'Install : Update Homebrew'
+  command: brew update
+
+- name: 'Install : Packages / Casks'
+  command: brew bundle --global
+
+- name: 'Install : Cleanup'
+  command: brew cleanup
+
+
+echo
+echo "Installing Ansible..."
+echo
+$DOTFILES_HOME/homebrew/bin/brew install ansible
 
 echo
 echo "To complete the installation, execute the following:"

@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+export PATH=$HOME/bin:$PATH
+
 [ -f $HOME/.zcreds ] && source $HOME/.zcreds
 
 gpgconf --launch gpg-agent
@@ -10,4 +12,3 @@ gpgconf --launch gpg-agent
 
 [ -f $HOME/.zaliases ] && source $HOME/.zaliases
 
-export PATH=$HOME/bin:$PATH

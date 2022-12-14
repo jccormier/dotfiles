@@ -7,7 +7,7 @@
 # For full license text, see LICENSE file in the repo root or https://opensource.org/licenses/MIT
 #
 
-BREW=/usr/local/bin/brew
+BREW=$HOME/.dotfiles/homebrew/bin/brew
 
 HOMEBREW_BUNDLE_FILE=$HOME/.Brewfile $BREW ${@}
 
