@@ -42,8 +42,8 @@ set background=dark
 colorscheme nord
 
 " Encrypted file support
-command Encrypt execute '%! ~/bin/encrypt' | execute ':redraw!'
-command Decrypt execute '%! ~/bin/decrypt' | execute ':redraw!'
+" command Encrypt execute '%! ~/bin/encrypt' | execute ':redraw!'
+" command Decrypt execute '%! ~/bin/decrypt' | execute ':redraw!'
 
 let mapleader=","
 
@@ -64,7 +64,7 @@ nnoremap <Leader>ss :mksession! $VIMCONFIG/sessions/
 nnoremap <silent> <Leader>sl :call fzf#run({'sink': 'source', 'dir': '$VIMCONFIG/sessions'})<CR>
 
 
-set rtp+=/usr/local/opt/fzf
+set rtp+=$HOME/bin/fzf
 
 let g:ackprg = 'ag -u --nogroup --nocolor --column'
 
